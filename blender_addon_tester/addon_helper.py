@@ -189,10 +189,10 @@ def cleanup(addon, bpy_module, addon_dir):
     # https://developer.blender.org/T77837
     def move_file(func, path, err):
         print("PATH: ",path)
-        import tempfile
-        tmp_dir = tempfile.gettempdir()
-        tmp_dir_path = tmp_dir + os.sep + path
-        os.replace(path, tmp_dir_path)
+        import random
+        hash = random.getrandbits(128)
+        hash_path = path + "_" + hash
+        os.replace(path, hash_path)
     
     print(f"Cleaning up - {bpy_module}")
     bpy.ops.preferences.addon_disable(module=bpy_module)
