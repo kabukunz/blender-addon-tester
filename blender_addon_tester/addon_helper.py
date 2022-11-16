@@ -184,10 +184,17 @@ def install_addon(bpy_module: str, zfile: str):
 
 
 def cleanup(addon, bpy_module, addon_dir):
+
+    # NOTE: fixing broken cleaning on Windows
+    # https://developer.blender.org/T77837
+    def move_file(func, path, err):
+        os.rename(path, os.path.join(bpy.utils.resources('SCRIPTS'), 'trash', os.path.basename(path)))
+    
     print(f"Cleaning up - {bpy_module}")
     bpy.ops.preferences.addon_disable(module=bpy_module)
     if os.path.isdir(addon_dir):
-        shutil.rmtree(addon_dir)
+        # shutil.rmtree(addon_dir)
+        shutil.rmtree(addon_dir, onerror=move_file)
 
 
 def get_version(bpy_module):
