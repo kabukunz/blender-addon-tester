@@ -191,7 +191,7 @@ def cleanup(addon, bpy_module, addon_dir):
         print("PATH: ",path)
         import random
         hash = random.getrandbits(128)
-        hash_path = path + "_" + hash
+        hash_path = path + "_" + str(hash)
         os.replace(path, hash_path)
     
     print(f"Cleaning up - {bpy_module}")
