@@ -191,7 +191,7 @@ def cleanup(addon, bpy_module, addon_dir):
         print("PATH: ",path)
         import tempfile
         tmp_dir = tempfile.gettempdir()
-        tmp_dir_path = tmp_dir + path
+        tmp_dir_path = tmp_dir + os.sep + path
         os.replace(path, tmp_dir_path)
     
     print(f"Cleaning up - {bpy_module}")
