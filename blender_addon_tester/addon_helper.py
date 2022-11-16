@@ -187,7 +187,7 @@ def cleanup(addon, bpy_module, addon_dir):
 
     # NOTE: fixing broken cleaning on Windows
     # https://developer.blender.org/T77837
-    def move_file(func, path, err):        
+    def move_file(func, path, err):
         pts = os.path.splitext(path)
         # only remove those nasty libraries
         if pts[1]:
@@ -200,9 +200,9 @@ def cleanup(addon, bpy_module, addon_dir):
     bpy.ops.preferences.addon_disable(module=bpy_module)
     if os.path.isdir(addon_dir):
         try:
-            shutil.rmtree()
+            shutil.rmtree(addon_dir)
         except Exception:
-            print("exception on removing: %s", addon_dir)
+            print("exception on removing:", addon_dir)
             shutil.rmtree(addon_dir, ignore_errors=False, onerror=move_file)
 
 
