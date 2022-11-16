@@ -188,12 +188,14 @@ def cleanup(addon, bpy_module, addon_dir):
     # NOTE: fixing broken cleaning on Windows
     # https://developer.blender.org/T77837
     def move_file(func, path, err):
-        print("PATH: ",path)
-        import random
-        hash = random.getrandbits(128)
-        hash_path = path + "_" + str(hash)
-        os.replace(path, hash_path)
-    
+        print("removing path: ",path)
+        # we only replace those nasty libraries
+        if os.path.isfile(path):
+            import random
+            hash = random.getrandbits(128)
+            hash_path = path + "_" + str(hash)
+            os.replace(path, hash_path)
+        
     print(f"Cleaning up - {bpy_module}")
     bpy.ops.preferences.addon_disable(module=bpy_module)
     if os.path.isdir(addon_dir):
