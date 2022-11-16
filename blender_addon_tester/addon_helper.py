@@ -193,7 +193,6 @@ def cleanup(addon, bpy_module, addon_dir):
         hash_path = path + "_" + str(hash)
         os.replace(path, hash_path)
         print("Cannot remove path. Renaming", path, "to", hash_path)
-        shutil.rmtree(hash_path)
         
     print(f"Cleaning up - {bpy_module}")
     bpy.ops.preferences.addon_disable(module=bpy_module)
