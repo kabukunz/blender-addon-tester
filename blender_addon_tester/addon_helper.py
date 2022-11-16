@@ -194,7 +194,7 @@ def cleanup(addon, bpy_module, addon_dir):
     bpy.ops.preferences.addon_disable(module=bpy_module)
     if os.path.isdir(addon_dir):
         # shutil.rmtree(addon_dir)
-        shutil.rmtree(addon_dir, onerror=move_file)
+        shutil.rmtree(addon_dir, ignore_errors=False, onerror=move_file)
 
 
 def get_version(bpy_module):
