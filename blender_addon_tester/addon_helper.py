@@ -200,9 +200,9 @@ def cleanup(addon, bpy_module, addon_dir):
     bpy.ops.preferences.addon_disable(module=bpy_module)
     if os.path.isdir(addon_dir):
         try:
-            shutil.rmtree(addon_dir)
+            shutil.rmtree()
         except Exception:
-            print("exception on removing: ",path)
+            print("exception on removing: %s", addon_dir)
             shutil.rmtree(addon_dir, ignore_errors=False, onerror=move_file)
 
 
