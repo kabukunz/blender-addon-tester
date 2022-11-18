@@ -36,11 +36,17 @@ def getSuffix(blender_version, platform=None):
         rev = g.group(0)
     else:
         raise RuntimeError(f"Blender version cannot be guessed in the following string: {blender_version}")
-        
+
     urls = [
-        f"https://ftp.nluug.nl/pub/graphics/blender/release/Blender{rev}",
-        "https://builder.blender.org/download/daily",
+        f"https://download.blender.org/release/Blender{rev}",
     ]
+
+    # urls = [
+    #     f"https://ftp.nluug.nl/pub/graphics/blender/release/Blender{rev}",
+    #     "https://builder.blender.org/download/daily",
+        
+    # ]
+
     blender_zippath = None
     nightly = False
     release_file_found = False
