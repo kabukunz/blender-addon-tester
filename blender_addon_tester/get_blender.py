@@ -39,6 +39,7 @@ def getSuffix(blender_version, platform=None):
 
     urls = [
         f"https://download.blender.org/release/Blender{rev}",
+        "https://builder.blender.org/download/daily", 
     ]
 
     # urls = [
